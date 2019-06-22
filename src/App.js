@@ -49,7 +49,7 @@ class App extends React.Component {
       if (this.state.check.length === 2) {
         this.checkMatch(this.state.check[0], this.state.check[1]);
       }
-    }, 1200);
+    }, 500);
   }
 
   render() {
