@@ -54,7 +54,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="app container row">
+      <div className="app container-fluid ">
         <GameBoard
           board={this.state.board}
           onclick={this.handleClick}
