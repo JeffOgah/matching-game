@@ -12,29 +12,38 @@ class App extends React.Component {
       display: Array(16).fill(false)
     };
     this.handleClick = this.handleClick.bind(this);
+    this.checkMatch = this.checkMatch.bind(this);
   }
-  handleClick(value,index) {
+
+  checkMatch() {
+    let matched = this.state.check[0][0] === this.state.check[1][0] ? true : false;
+
+    if (this.state.match === true) {
+      console.log(this.state.match);
+    }
+  }
+
+  handleClick(value, index) {
+    //Flip card on click
     let temp = [...this.state.display];
     temp[index] = true;
+
     let arr = [...this.state.check];
-    let matched = false;
-    arr = arr.concat(value);
+
+    arr.push([value, index]);
     if (arr.length > 2) {
       arr = arr.slice(-1);
     }
-    if (arr.length === 2) {
-      matched = arr[0] === arr[1] ? true : false;
-    }
     this.setState({
       check: arr,
-      match: this.state.match.concat(matched),
       display: temp
     });
+    if (this.state.check.length === 2) {
+      this.checkMatch();
+    }
   }
-  
+
   render() {
-    // console.log(this.state.check, this.state.match)
-    // console.log(this.state.display)
     return (
       <div className="App">
         <GameBoard
