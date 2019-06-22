@@ -54,7 +54,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="app container justify-content-center align-items-center ">
+      <div className="app container row">
         <GameBoard
           board={this.state.board}
           onclick={this.handleClick}

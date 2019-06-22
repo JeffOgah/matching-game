@@ -1,7 +1,12 @@
-.app {
-  text-align: center;
-  height: 100vh;
+#root {
+  margin: 0 auto !important;
+  width: fit-content;
 }
+.app {
+  height: 70vh;
+  margin: 15vh 0;
+}
+
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
