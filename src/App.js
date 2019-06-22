@@ -8,7 +8,7 @@ import music from "./images/music.png";
 import pin from "./images/pin.png";
 import location from "./images/location.png";
 import star from "./images/star.png";
-import tick from "./images/tick.png"
+import tick from "./images/tick.png";
 
 class App extends React.Component {
   constructor(props) {
@@ -16,25 +16,26 @@ class App extends React.Component {
     this.state = {
       board: createGame(),
       check: [],
-      match: [],
-      display: Array(16).fill("invisible")
+      found: [],
+      display: Array(16).fill("invisible"),
     };
     this.handleClick = this.handleClick.bind(this);
     this.checkMatch = this.checkMatch.bind(this);
   }
   checkMatch(a, b) {
     let matched = a[0] === b[0];
+    let arr = [...this.state.found];
     let temp = [...this.state.display];
     if (matched) {
       temp[a[1]] = temp[b[1]] = "visible";
-      
+      arr = arr.concat(a[0], b[0]);
     } else {
       temp[a[1]] = temp[b[1]] = "invisible";
-      
     }
     this.setState({
       check: [],
-      display: temp
+      display: temp,
+      found: arr,
     });
   }
 
@@ -46,18 +47,21 @@ class App extends React.Component {
     let arr = [...this.state.check];
     if (arr.length === 1 && arr[0].includes(index)) {
     } else {
-      arr.push([value, index]);
+      if (this.state.found.includes(value)) {
+      } else {
+        arr.push([value, index]);
+      }
     }
-
+    setTimeout(() => {}, 1000);
     this.setState({
       check: arr,
-      display: temp
+      display: temp,
     });
     setTimeout(() => {
       if (this.state.check.length === 2) {
         this.checkMatch(this.state.check[0], this.state.check[1]);
       }
-    }, 500);
+    }, 100);
   }
 
   render() {
