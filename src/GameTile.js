@@ -6,7 +6,7 @@ function GameTile(props) {
       className="border rounded bg-info tile"
       onClick={() => props.onclick()}
     >
-      {props.display ? <img src={props.tile} className="img-thumbnail img-tile" alt="" /> : ""}
+      <img src={props.tile} className={`img-thumbnail img-tile ${props.display}`} alt=""/>
     </div>
   );
 }

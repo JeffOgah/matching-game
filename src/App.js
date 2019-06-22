@@ -17,7 +17,7 @@ class App extends React.Component {
       board: createGame(),
       check: [],
       match: [],
-      display: Array(16).fill(true)
+      display: Array(16).fill("invisible")
     };
     this.handleClick = this.handleClick.bind(this);
     this.checkMatch = this.checkMatch.bind(this);
@@ -26,11 +26,11 @@ class App extends React.Component {
     let matched = a[0] === b[0];
     let temp = [...this.state.display];
     if (matched) {
-      temp[a[1]] = true;
-      temp[b[1]] = true;
+      temp[a[1]] = temp[b[1]] = "visible";
+      
     } else {
-      temp[a[1]] = false;
-      temp[b[1]] = false;
+      temp[a[1]] = temp[b[1]] = "invisible";
+      
     }
     this.setState({
       check: [],
@@ -41,7 +41,7 @@ class App extends React.Component {
   handleClick(value, index) {
     //Flip card on click
     let temp = [...this.state.display];
-    temp[index] = true;
+    temp[index] = "visible";
 
     let arr = [...this.state.check];
     if (arr.length === 1 && arr[0].includes(index)) {
@@ -62,7 +62,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="app ">
+      <div className="app m-auto">
         <GameBoard
           board={this.state.board}
           onclick={this.handleClick}

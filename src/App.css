@@ -1,20 +1,12 @@
 #root {
-  margin: 0 auto !important;
-  width: fit-content;
-}
-.app {
-  margin: 15vh 0;
-  width: fit-content !important;
-}
-.board {
-  max-width: 100vw;
-}
-.tile {
-  width: fit-content !important;
-  padding: 0 !important;
+  display: flex;
+  margin: 20vh auto;
 }
 .img-tile {
-
+  height: 5em !important;
+  width: 5em !important;
+  padding: 1em !important;
+  box-sizing: border-box;
   background-color: transparent !important;
   border: none !important;
 }

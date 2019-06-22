@@ -15,8 +15,19 @@ function GameBoard(props) {
   }
   
   return (
-    <div className="">
-      {row}
+    <div className="board">
+      <div className="d-flex m-auto">
+      {row.slice(0,4)}
+      </div>
+      <div className="d-flex m-auto">
+      {row.slice(4,8)}
+      </div>
+      <div className="d-flex m-auto">
+      {row.slice(8,12)}
+      </div>
+      <div className="d-flex m-auto">
+      {row.slice(12,16)}
+      </div>
     </div>
   );
 }
