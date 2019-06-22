@@ -21,6 +21,7 @@ class App extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.checkMatch = this.checkMatch.bind(this);
+    this.newGame = this.newGame.bind(this);
   }
   checkMatch(a, b) {
     let matched = a[0] === b[0];
@@ -63,10 +64,18 @@ class App extends React.Component {
       }
     }, 100);
   }
-
+  newGame() {
+    this.setState({
+      board: createGame(),
+      check: [],
+      found: [],
+      display: Array(16).fill("invisible"),
+    })
+  }
   render() {
     return (
       <div className="app m-auto">
+        <button className="btn btn-primary" onClick={this.newGame}>New Game</button>
         <GameBoard
           board={this.state.board}
           onclick={this.handleClick}
