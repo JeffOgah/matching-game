@@ -13,7 +13,7 @@ function GameBoard(props) {
       />
     );
   }
-  return <div className="row">{row}</div>;
+  return <div className="row h-100 justify-content-center align-items-center">{row}</div>;
 }
 
 export default GameBoard;

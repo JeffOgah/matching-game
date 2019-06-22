@@ -14,13 +14,20 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.checkMatch = this.checkMatch.bind(this);
   }
-
-  checkMatch() {
-    let matched = this.state.check[0][0] === this.state.check[1][0] ? true : false;
-
-    if (this.state.match === true) {
-      console.log(this.state.match);
+  checkMatch(a, b) {
+    let matched = a[0] === b[0];
+    let temp = [...this.state.display];
+    if (matched) {
+      temp[a[1]] = true;
+      temp[b[1]] = true;
+    } else {
+      temp[a[1]] = false;
+      temp[b[1]] = false;
     }
+    this.setState({
+      check: [],
+      display: temp
+    });
   }
 
   handleClick(value, index) {
@@ -29,23 +36,25 @@ class App extends React.Component {
     temp[index] = true;
 
     let arr = [...this.state.check];
-
-    arr.push([value, index]);
-    if (arr.length > 2) {
-      arr = arr.slice(-1);
+    if (arr.length === 1 && arr[0].includes(index)) {
+    } else {
+      arr.push([value, index]);
     }
+
     this.setState({
       check: arr,
       display: temp
     });
-    if (this.state.check.length === 2) {
-      this.checkMatch();
-    }
+    setTimeout(() => {
+      if (this.state.check.length === 2) {
+        this.checkMatch(this.state.check[0], this.state.check[1]);
+      }
+    }, 1200);
   }
 
   render() {
     return (
-      <div className="App">
+      <div className="app container justify-content-center align-items-center ">
         <GameBoard
           board={this.state.board}
           onclick={this.handleClick}
@@ -59,7 +68,7 @@ class App extends React.Component {
 export default App;
 
 const createGame = () => {
-  const x = [1, 2, 3, 4, 5, 6, 7, 8];
+  const x = ["a", "b", "c", "d", "e", "f", "g", "h"];
   const arr = [...x, ...x];
   for (let i = arr.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
