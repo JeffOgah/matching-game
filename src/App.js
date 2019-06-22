@@ -1,6 +1,14 @@
 import React from "react";
 import "./App.css";
 import GameBoard from "./GameBoard.js";
+import camera from "./images/camera.png";
+import idea from "./images/idea.png";
+import like from "./images/like.png";
+import music from "./images/music.png";
+import pin from "./images/pin.png";
+import location from "./images/location.png";
+import star from "./images/star.png";
+import tick from "./images/tick.png"
 
 class App extends React.Component {
   constructor(props) {
@@ -9,7 +17,7 @@ class App extends React.Component {
       board: createGame(),
       check: [],
       match: [],
-      display: Array(16).fill(false)
+      display: Array(16).fill(true)
     };
     this.handleClick = this.handleClick.bind(this);
     this.checkMatch = this.checkMatch.bind(this);
@@ -54,7 +62,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="app container-fluid ">
+      <div className="app ">
         <GameBoard
           board={this.state.board}
           onclick={this.handleClick}
@@ -68,7 +76,7 @@ class App extends React.Component {
 export default App;
 
 const createGame = () => {
-  const x = ["a", "b", "c", "d", "e", "f", "g", "h"];
+  const x = [camera, idea, like, music, pin, location, star, tick];
   const arr = [...x, ...x];
   for (let i = arr.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));

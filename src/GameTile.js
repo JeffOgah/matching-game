@@ -3,10 +3,10 @@ import React from "react";
 function GameTile(props) {
   return (
     <div
-      className="col-3 border rounded bg-info"
+      className="border rounded bg-info tile"
       onClick={() => props.onclick()}
     >
-      {props.display ? props.tile : ""}
+      {props.display ? <img src={props.tile} className="img-thumbnail img-tile" alt="" /> : ""}
     </div>
   );
 }
