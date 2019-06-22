@@ -9,21 +9,16 @@ class App extends React.Component {
       board: createGame(),
       check: [],
       match: [],
-      display: false
+      display: Array(16).fill(false)
     };
     this.handleClick = this.handleClick.bind(this);
-    this.showTile = this.showTile.bind(this);
   }
-  showTile() {
-    this.setState({
-      display: !this.state.display
-    })
-  }
-  handleClick(e) {
-    this.state.showTile();
+  handleClick(value,index) {
+    let temp = [...this.state.display];
+    temp[index] = true;
     let arr = [...this.state.check];
     let matched = false;
-    arr = arr.concat(e);
+    arr = arr.concat(value);
     if (arr.length > 2) {
       arr = arr.slice(-1);
     }
@@ -32,12 +27,14 @@ class App extends React.Component {
     }
     this.setState({
       check: arr,
-      match: this.state.match.concat(matched)
+      match: this.state.match.concat(matched),
+      display: temp
     });
   }
   
   render() {
-    console.log(this.state.check, this.state.match)
+    // console.log(this.state.check, this.state.match)
+    // console.log(this.state.display)
     return (
       <div className="App">
         <GameBoard

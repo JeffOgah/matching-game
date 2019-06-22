@@ -8,8 +8,8 @@ function GameBoard(props) {
       <GameTile
         key={i}
         tile={props.board[i]}
-        onclick={() => props.onclick(props.board[i])}
-        display={props.display}
+        onclick={() => props.onclick(props.board[i], i)}
+        display={props.display[i]}
       />
     );
   }
