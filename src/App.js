@@ -25,7 +25,8 @@ class App extends React.Component {
       win: "",
       display: Array(16).fill("invisible"),
       timer: [0, 0],
-      moves: 0
+      moves: 0,
+      start: false
     };
     this.handleClick = this.handleClick.bind(this);
     this.checkMatch = this.checkMatch.bind(this);
@@ -34,16 +35,23 @@ class App extends React.Component {
     this.tick = this.tick.bind(this);
   }
   tick() {
-    let sec = this.state.timer[1];
-    let min = this.state.timer[0];
-    sec++;
-    if (sec === 60) {
-      min++;
-      sec = 0;
-    }
-    this.setState({
-      timer: [min, sec]
-    });
+    this.timeID = setInterval(() => {
+      if (this.state.start) {
+        let sec = this.state.timer[1];
+        let min = this.state.timer[0];
+        sec++;
+        if (sec === 60) {
+          min++;
+          sec = 0;
+        }
+        this.setState({
+          timer: [min, sec]
+        });
+      }
+      if (this.state.start === false) {
+        clearInterval(this.timeID);
+      }
+    }, 1000);
   }
 
   checkMatch(a, b) {
@@ -73,7 +81,12 @@ class App extends React.Component {
     //Flip card on click
     let temp = [...this.state.display];
     temp[index] = "visible";
-
+    if (this.state.timer[0] === 0 && this.state.timer[1] === 0) {
+      this.tick();
+      this.setState({
+        start: true
+      });
+    }
     //Hold value of clicked cards to compare
     let arr = [...this.state.check];
     if (arr.length === 1 && arr[0].includes(index)) {
@@ -107,7 +120,8 @@ class App extends React.Component {
       win: "",
       display: Array(16).fill("invisible"),
       timer: [0, 0],
-      moves: 0
+      moves: 0,
+      start: false
     });
     clearInterval(this.timeID);
   }
@@ -115,22 +129,21 @@ class App extends React.Component {
   handleWin() {
     clearInterval(this.timeID);
     this.setState({
-      win: <GameWin newgame={this.newGame} />
+      win: <GameWin newgame={this.newGame} />,
+      start: false
     });
   }
   render() {
-    {
-    }
     return (
       <div className="app m-auto bg-light p-3">
         <h2 className="text-center mb-3">Matching Game</h2>
         <div className="d-flex justify-content-around my-3">
           <span>Moves: {this.state.moves}</span>
-          {/* <span>{`${"0"
+          <span>{`${"0"
             .concat(String(this.state.timer[0]))
             .slice(-2)} : ${"0"
             .concat(String(this.state.timer[1]))
-            .slice(-2)}`}</span> */}
+            .slice(-2)}`}</span>
           <span onClick={this.newGame}>
             <img className="icon" src={restart} alt="restart" />
           </span>
