@@ -14,6 +14,7 @@ import github from "./images/github.svg";
 import twitter from "./images/twitter.svg";
 import linkedin from "./images/linkedin.svg";
 import restart from "./images/restart.svg";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +25,7 @@ class App extends React.Component {
       win: "",
       display: Array(16).fill("invisible"),
       timer: [0, 0],
-      moves: 0,
+      moves: 0
     };
     this.handleClick = this.handleClick.bind(this);
     this.checkMatch = this.checkMatch.bind(this);
@@ -32,7 +33,6 @@ class App extends React.Component {
     this.handleWin = this.handleWin.bind(this);
     this.tick = this.tick.bind(this);
   }
-
   tick() {
     let sec = this.state.timer[1];
     let min = this.state.timer[0];
@@ -63,17 +63,12 @@ class App extends React.Component {
       moves: this.state.moves + 1
     });
     if (this.state.found.length === this.state.board.length) {
-      this.handleWin()
+      this.handleWin();
     }
   }
 
   handleClick(value, index) {
     //Check if timer is 0 and start coundown
-    if (this.state.timer[0] === 0 && this.state.timer[1] === 0) {
-      this.timeID = setInterval(() => {
-        this.tick();
-      }, 1000);
-    }
 
     //Flip card on click
     let temp = [...this.state.display];
@@ -120,21 +115,22 @@ class App extends React.Component {
   handleWin() {
     clearInterval(this.timeID);
     this.setState({
-      win: <GameWin newgame={this.newGame}/>
-    })
-    
+      win: <GameWin newgame={this.newGame} />
+    });
   }
   render() {
+    {
+    }
     return (
       <div className="app m-auto bg-light p-3">
         <h2 className="text-center mb-3">Matching Game</h2>
         <div className="d-flex justify-content-around my-3">
           <span>Moves: {this.state.moves}</span>
-          <span>{`${"0"
+          {/* <span>{`${"0"
             .concat(String(this.state.timer[0]))
             .slice(-2)} : ${"0"
             .concat(String(this.state.timer[1]))
-            .slice(-2)}`}</span>
+            .slice(-2)}`}</span> */}
           <span onClick={this.newGame}>
             <img className="icon" src={restart} alt="restart" />
           </span>
