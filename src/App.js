@@ -21,13 +21,31 @@ class App extends React.Component {
       check: [],
       found: [],
       display: Array(16).fill("invisible"),
-      timer: 0,
+      timer: [0,0],
       moves: 0
     };
     this.handleClick = this.handleClick.bind(this);
     this.checkMatch = this.checkMatch.bind(this);
     this.newGame = this.newGame.bind(this);
+    this.manageTime = this.manageTime.bind(this);
+    this.checkWin = this.checkWin.bind(this);
   }
+
+  manageTime() {
+    setInterval(() => {
+      let sec = this.state.timer[1];
+      let min = this.state.timer[0];
+      sec++;
+      if (sec === 60) {
+        min++;
+        sec = 0;
+      }
+      this.setState({
+        timer: [min, sec]
+      });
+    }, 1000);
+  }
+
   checkMatch(a, b) {
     let matched = a[0] === b[0];
     let arr = [...this.state.found];
@@ -44,13 +62,18 @@ class App extends React.Component {
       found: arr,
       moves: this.state.moves + 1
     });
+    this.checkWin()
   }
 
   handleClick(value, index) {
+    //Check if timer is 0 and start coundown
+    if (this.state.timer[0] === 0 && this.state.timer[1] === 0){this.manageTime()}
+    
     //Flip card on click
     let temp = [...this.state.display];
     temp[index] = "visible";
-
+    
+    //Hold value of clicked cards to compare
     let arr = [...this.state.check];
     if (arr.length === 1 && arr[0].includes(index)) {
     } else {
@@ -59,11 +82,15 @@ class App extends React.Component {
         arr.push([value, index]);
       }
     }
+    
+    //timeout to prevent async calls on click
     setTimeout(() => {}, 1000);
     this.setState({
       check: arr,
       display: temp
     });
+    
+    //compare cards when two consecutive are open
     setTimeout(() => {
       if (this.state.check.length === 2) {
         this.checkMatch(this.state.check[0], this.state.check[1]);
@@ -81,24 +108,29 @@ class App extends React.Component {
       disc
     });
   }
-  render() {
-    let checkWin = [];
+  checkWin() {
+    let message = [];
+    clearInterval(this.manageTime)
     if (this.state.found.length === 2) {
-      checkWin.push(<div className="you-win">You Win!</div>);
-      console.log(checkWin);
+      clearInterval(this.manageTime)
+      message.push(<div className="you-win">You Win!</div>);
     }
+  }
+  render() {
+  
     return (
       <div className="app m-auto bg-light p-3">
         <h2 className="text-center mb-3">Matching Game</h2>
         <div className="d-flex justify-content-around my-3">
           <span>Moves: {this.state.moves}</span>
-          <span>{this.state.timer}</span>
+          <span>{`${"0"
+            .concat(String(this.state.timer[0]))
+            .slice(-2)} : ${"0"
+            .concat(String(this.state.timer[1]))
+            .slice(-2)}`}</span>
+          <span onClick={this.checkWin}>Stop</span>
           <span onClick={this.newGame}>
-            <img
-              className="icon"
-              src={restart}
-              alt="restart"
-            />
+            <img className="icon" src={restart} alt="restart" />
           </span>
         </div>
         <GameBoard
@@ -106,7 +138,7 @@ class App extends React.Component {
           onclick={this.handleClick}
           display={this.state.display}
         />
-        {checkWin}
+        {}
         <div className="text-center">
           <p className="m-0 mt-2">Made by Jeff</p>
           <span>
