@@ -9,7 +9,10 @@ import pin from "./images/pin.png";
 import radio from "./images/radio.png";
 import star from "./images/star.png";
 import disc from "./images/disc.png";
-
+import github from "./images/github.svg";
+import twitter from "./images/twitter.svg";
+import linkedin from "./images/linkedin.svg";
+import restart from "./images/restart.svg";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +22,7 @@ class App extends React.Component {
       found: [],
       display: Array(16).fill("invisible"),
       timer: 0,
-      moves: 0,
+      moves: 0
     };
     this.handleClick = this.handleClick.bind(this);
     this.checkMatch = this.checkMatch.bind(this);
@@ -39,7 +42,7 @@ class App extends React.Component {
       check: [],
       display: temp,
       found: arr,
-      moves: (this.state.moves + 1)
+      moves: this.state.moves + 1
     });
   }
 
@@ -59,7 +62,7 @@ class App extends React.Component {
     setTimeout(() => {}, 1000);
     this.setState({
       check: arr,
-      display: temp,
+      display: temp
     });
     setTimeout(() => {
       if (this.state.check.length === 2) {
@@ -74,28 +77,66 @@ class App extends React.Component {
       found: [],
       display: Array(16).fill("invisible"),
       timer: 0,
-      moves: 0,disc
-    })
+      moves: 0,
+      disc
+    });
   }
   render() {
-    const checkWin = () => {
-      if (this.state.found.length === 16) {
-        alert("You win")
-      }
+    let checkWin = [];
+    if (this.state.found.length === 2) {
+      checkWin.push(<div className="you-win">You Win!</div>);
+      console.log(checkWin);
     }
     return (
       <div className="app m-auto bg-light p-3">
-        <h1 className="text-center mb-5">Matching Game</h1>
+        <h2 className="text-center mb-3">Matching Game</h2>
         <div className="d-flex justify-content-around my-3">
           <span>Moves: {this.state.moves}</span>
           <span>{this.state.timer}</span>
-          <button className="btn btn-primary" onClick={this.newGame}>New Game</button></div>
+          <span onClick={this.newGame}>
+            <img
+              className="icon"
+              src={restart}
+              alt="restart"
+            />
+          </span>
+        </div>
         <GameBoard
           board={this.state.board}
           onclick={this.handleClick}
           display={this.state.display}
         />
-        {checkWin()}
+        {checkWin}
+        <div className="text-center">
+          <p className="m-0 mt-2">Made by Jeff</p>
+          <span>
+            <a
+              href="https://github.com/jeffogah"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="icon mx-1" src={github} alt="github" />
+            </a>
+          </span>
+          <span>
+            <a
+              href="https://twitter.com/jeff_ogah"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="icon mx-1" src={twitter} alt="twitter" />
+            </a>
+          </span>
+          <span>
+            <a
+              href="https://www.linkedin.com/in/jeffrey-ogah-55472216a/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="icon mx-1" src={linkedin} alt="linkedin" />
+            </a>
+          </span>
+        </div>
       </div>
     );
   }
