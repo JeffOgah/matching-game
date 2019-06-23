@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "87e0156e50dd65350ea36d844d94ba39",
+    "revision": "56f4e62cc77a9aa80d29f756b250d032",
     "url": "/matching-game/index.html"
   },
   {
-    "revision": "797b632e5487f5c5c15e",
+    "revision": "422dcc4e76f19039a2eb",
     "url": "/matching-game/static/css/2.266e55a5.chunk.css"
   },
   {
-    "revision": "9a68b77fa907252e2e2f",
-    "url": "/matching-game/static/css/main.298be39e.chunk.css"
+    "revision": "e066cf3bb02b6955fda6",
+    "url": "/matching-game/static/css/main.77689d8e.chunk.css"
   },
   {
-    "revision": "797b632e5487f5c5c15e",
-    "url": "/matching-game/static/js/2.cc2ad5ca.chunk.js"
+    "revision": "422dcc4e76f19039a2eb",
+    "url": "/matching-game/static/js/2.38189ce9.chunk.js"
   },
   {
-    "revision": "9a68b77fa907252e2e2f",
-    "url": "/matching-game/static/js/main.aaf35aa6.chunk.js"
+    "revision": "e066cf3bb02b6955fda6",
+    "url": "/matching-game/static/js/main.7412c245.chunk.js"
   },
   {
     "revision": "e43d7fc81bcf6d217bd3",
@@ -26,6 +26,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "e4ef38b67fed768b125cf0a8d0e8f95b",
     "url": "/matching-game/static/media/camera.e4ef38b6.png"
+  },
+  {
+    "revision": "0ea53083b3f6d1c7ffe5ebda3cae35b4",
+    "url": "/matching-game/static/media/dark-star.0ea53083.svg"
   },
   {
     "revision": "749779e0868b55071afa3917016288fc",
