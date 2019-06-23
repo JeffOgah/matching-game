@@ -62,7 +62,7 @@ class App extends React.Component {
       found: arr,
       moves: this.state.moves + 1
     });
-    if (this.state.found.length === 2) {
+    if (this.state.found.length === this.state.board.length) {
       this.handleWin()
     }
   }
