@@ -21,29 +21,27 @@ class App extends React.Component {
       check: [],
       found: [],
       display: Array(16).fill("invisible"),
-      timer: [0,0],
+      timer: [0, 0],
       moves: 0
     };
     this.handleClick = this.handleClick.bind(this);
     this.checkMatch = this.checkMatch.bind(this);
     this.newGame = this.newGame.bind(this);
-    this.manageTime = this.manageTime.bind(this);
-    this.checkWin = this.checkWin.bind(this);
+    this.handleWin = this.handleWin.bind(this);
+    this.tick = this.tick.bind(this);
   }
 
-  manageTime() {
-    setInterval(() => {
-      let sec = this.state.timer[1];
-      let min = this.state.timer[0];
-      sec++;
-      if (sec === 60) {
-        min++;
-        sec = 0;
-      }
-      this.setState({
-        timer: [min, sec]
-      });
-    }, 1000);
+  tick() {
+    let sec = this.state.timer[1];
+    let min = this.state.timer[0];
+    sec++;
+    if (sec === 60) {
+      min++;
+      sec = 0;
+    }
+    this.setState({
+      timer: [min, sec]
+    });
   }
 
   checkMatch(a, b) {
@@ -62,17 +60,23 @@ class App extends React.Component {
       found: arr,
       moves: this.state.moves + 1
     });
-    this.checkWin()
+    if (this.state.found.length === 2) {
+      this.handleWin()
+    }
   }
 
   handleClick(value, index) {
     //Check if timer is 0 and start coundown
-    if (this.state.timer[0] === 0 && this.state.timer[1] === 0){this.manageTime()}
-    
+    if (this.state.timer[0] === 0 && this.state.timer[1] === 0) {
+      this.timeID = setInterval(() => {
+        this.tick();
+      }, 1000);
+    }
+
     //Flip card on click
     let temp = [...this.state.display];
     temp[index] = "visible";
-    
+
     //Hold value of clicked cards to compare
     let arr = [...this.state.check];
     if (arr.length === 1 && arr[0].includes(index)) {
@@ -82,14 +86,14 @@ class App extends React.Component {
         arr.push([value, index]);
       }
     }
-    
+
     //timeout to prevent async calls on click
     setTimeout(() => {}, 1000);
     this.setState({
       check: arr,
       display: temp
     });
-    
+
     //compare cards when two consecutive are open
     setTimeout(() => {
       if (this.state.check.length === 2) {
@@ -97,6 +101,7 @@ class App extends React.Component {
       }
     }, 200);
   }
+
   newGame() {
     this.setState({
       board: createGame(),
@@ -108,16 +113,13 @@ class App extends React.Component {
       disc
     });
   }
-  checkWin() {
+
+  handleWin() {
     let message = [];
-    clearInterval(this.manageTime)
-    if (this.state.found.length === 2) {
-      clearInterval(this.manageTime)
-      message.push(<div className="you-win">You Win!</div>);
-    }
+    clearInterval(this.timeID);
+    message.push(<div className="you-win">You Win!</div>);
   }
   render() {
-  
     return (
       <div className="app m-auto bg-light p-3">
         <h2 className="text-center mb-3">Matching Game</h2>
@@ -128,7 +130,6 @@ class App extends React.Component {
             .slice(-2)} : ${"0"
             .concat(String(this.state.timer[1]))
             .slice(-2)}`}</span>
-          <span onClick={this.checkWin}>Stop</span>
           <span onClick={this.newGame}>
             <img className="icon" src={restart} alt="restart" />
           </span>
