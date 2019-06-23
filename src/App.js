@@ -21,9 +21,10 @@ class App extends React.Component {
       board: createGame(),
       check: [],
       found: [],
+      win: "",
       display: Array(16).fill("invisible"),
       timer: [0, 0],
-      moves: 0
+      moves: 0,
     };
     this.handleClick = this.handleClick.bind(this);
     this.checkMatch = this.checkMatch.bind(this);
@@ -108,6 +109,7 @@ class App extends React.Component {
       board: createGame(),
       check: [],
       found: [],
+      win: "",
       display: Array(16).fill("invisible"),
       timer: [0, 0],
       moves: 0
@@ -117,6 +119,9 @@ class App extends React.Component {
 
   handleWin() {
     clearInterval(this.timeID);
+    this.setState({
+      win: <GameWin newgame={this.newGame}/>
+    })
     
   }
   render() {
@@ -169,7 +174,7 @@ class App extends React.Component {
             </a>
           </span>
         </div>
-        <GameWin newgame={this.newGame}/>
+        {this.state.win}
       </div>
     );
   }
