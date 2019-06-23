@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import GameBoard from "./GameBoard.js";
+import GameWin from "./GameWin.js";
 import camera from "./images/camera.png";
 import idea from "./images/idea.png";
 import locked from "./images/locked.png";
@@ -108,16 +109,15 @@ class App extends React.Component {
       check: [],
       found: [],
       display: Array(16).fill("invisible"),
-      timer: 0,
-      moves: 0,
-      disc
+      timer: [0, 0],
+      moves: 0
     });
+    clearInterval(this.timeID);
   }
 
   handleWin() {
-    let message = [];
     clearInterval(this.timeID);
-    message.push(<div className="you-win">You Win!</div>);
+    
   }
   render() {
     return (
@@ -139,7 +139,6 @@ class App extends React.Component {
           onclick={this.handleClick}
           display={this.state.display}
         />
-        {}
         <div className="text-center">
           <p className="m-0 mt-2">Made by Jeff</p>
           <span>
@@ -170,6 +169,7 @@ class App extends React.Component {
             </a>
           </span>
         </div>
+        <GameWin newgame={this.newGame}/>
       </div>
     );
   }

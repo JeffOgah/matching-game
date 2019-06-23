@@ -22,6 +22,7 @@ date time javascriptdate time javascript
   width: 100vw !important;
   position: fixed;
   background-color: black;
+  border: black;
 }
 .icon {
   font-size: 10px;
