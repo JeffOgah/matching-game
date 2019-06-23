@@ -1,21 +1,25 @@
 {
   "files": {
-    "main.css": "/matching-game/static/css/main.dc9785d1.chunk.css",
-    "main.js": "/matching-game/static/js/main.9d9d13ab.chunk.js",
-    "main.js.map": "/matching-game/static/js/main.9d9d13ab.chunk.js.map",
+    "main.css": "/matching-game/static/css/main.ba7de7d0.chunk.css",
+    "main.js": "/matching-game/static/js/main.50976c93.chunk.js",
+    "main.js.map": "/matching-game/static/js/main.50976c93.chunk.js.map",
     "runtime~main.js": "/matching-game/static/js/runtime~main.c314e423.js",
     "runtime~main.js.map": "/matching-game/static/js/runtime~main.c314e423.js.map",
     "static/css/2.266e55a5.chunk.css": "/matching-game/static/css/2.266e55a5.chunk.css",
-    "static/js/2.30ceed81.chunk.js": "/matching-game/static/js/2.30ceed81.chunk.js",
-    "static/js/2.30ceed81.chunk.js.map": "/matching-game/static/js/2.30ceed81.chunk.js.map",
+    "static/js/2.3987f5df.chunk.js": "/matching-game/static/js/2.3987f5df.chunk.js",
+    "static/js/2.3987f5df.chunk.js.map": "/matching-game/static/js/2.3987f5df.chunk.js.map",
     "index.html": "/matching-game/index.html",
-    "precache-manifest.dec9d4b336babf7ebdab33735407f491.js": "/matching-game/precache-manifest.dec9d4b336babf7ebdab33735407f491.js",
+    "precache-manifest.c540f35f13146ea42c4443bc1af15a5c.js": "/matching-game/precache-manifest.c540f35f13146ea42c4443bc1af15a5c.js",
     "service-worker.js": "/matching-game/service-worker.js",
     "static/css/2.266e55a5.chunk.css.map": "/matching-game/static/css/2.266e55a5.chunk.css.map",
-    "static/css/main.dc9785d1.chunk.css.map": "/matching-game/static/css/main.dc9785d1.chunk.css.map",
+    "static/css/main.ba7de7d0.chunk.css.map": "/matching-game/static/css/main.ba7de7d0.chunk.css.map",
     "static/media/camera.png": "/matching-game/static/media/camera.e4ef38b6.png",
     "static/media/disc.png": "/matching-game/static/media/disc.749779e0.png",
+    "static/media/github.svg": "/matching-game/static/media/github.76d344f0.svg",
     "static/media/idea.png": "/matching-game/static/media/idea.8e8b7865.png",
-    "static/media/radio.png": "/matching-game/static/media/radio.2d6bd288.png"
+    "static/media/linkedin.svg": "/matching-game/static/media/linkedin.4b475fb3.svg",
+    "static/media/radio.png": "/matching-game/static/media/radio.2d6bd288.png",
+    "static/media/restart.svg": "/matching-game/static/media/restart.2e3d4eca.svg",
+    "static/media/twitter.svg": "/matching-game/static/media/twitter.c9f12008.svg"
   }
 }
