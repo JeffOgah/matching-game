@@ -3,7 +3,7 @@ import "./App.css";
 import GameBoard from "./GameBoard.js";
 import camera from "./images/camera.png";
 import idea from "./images/idea.png";
-import like from "./images/like.png";
+import locked from "./images/locked.png";
 import music from "./images/music.png";
 import pin from "./images/pin.png";
 import radio from "./images/radio.png";
@@ -73,9 +73,16 @@ class App extends React.Component {
       check: [],
       found: [],
       display: Array(16).fill("invisible"),
+      timer: 0,
+      moves: 0,disc
     })
   }
   render() {
+    const checkWin = () => {
+      if (this.state.found.length === 16) {
+        alert("You win")
+      }
+    }
     return (
       <div className="app m-auto bg-light p-3">
         <h1 className="text-center mb-5">Matching Game</h1>
@@ -88,6 +95,7 @@ class App extends React.Component {
           onclick={this.handleClick}
           display={this.state.display}
         />
+        {checkWin()}
       </div>
     );
   }
@@ -96,7 +104,7 @@ class App extends React.Component {
 export default App;
 
 const createGame = () => {
-  const x = [camera, idea, like, music, pin, radio, star, disc];
+  const x = [camera, idea, locked, music, pin, radio, star, disc];
   const arr = [...x, ...x];
   for (let i = arr.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
