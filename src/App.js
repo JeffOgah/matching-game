@@ -26,7 +26,8 @@ class App extends React.Component {
       display: Array(16).fill("invisible"),
       timer: [0, 0],
       moves: 0,
-      start: false
+      start: false,
+      rating: 0
     };
     this.handleClick = this.handleClick.bind(this);
     this.checkMatch = this.checkMatch.bind(this);
@@ -58,19 +59,23 @@ class App extends React.Component {
     let matched = a[0] === b[0];
     let arr = [...this.state.found];
     let temp = [...this.state.display];
+    let rate = this.state.rating
     if (matched) {
       temp[a[1]] = temp[b[1]] = "visible";
       arr = arr.concat(a[0], b[0]);
+      if (rate < 3) {rate++}
     } else {
       temp[a[1]] = temp[b[1]] = "invisible";
+      if (rate > 0) {rate--}
     }
     this.setState({
       check: [],
       display: temp,
       found: arr,
-      moves: this.state.moves + 1
+      moves: this.state.moves + 1,
+      rating: rate
     });
-    if (this.state.found.length === this.state.board.length) {
+    if (this.state.found.length === 2) {
       this.handleWin();
     }
   }
@@ -121,7 +126,8 @@ class App extends React.Component {
       display: Array(16).fill("invisible"),
       timer: [0, 0],
       moves: 0,
-      start: false
+      start: false,
+      rating: 0
     });
     clearInterval(this.timeID);
   }
@@ -129,7 +135,7 @@ class App extends React.Component {
   handleWin() {
     clearInterval(this.timeID);
     this.setState({
-      win: <GameWin newgame={this.newGame} />,
+      win: <GameWin newgame={this.newGame} moves={this.state.moves} time={this.state.timer} rating={this.state.rating}/>,
       start: false
     });
   }
