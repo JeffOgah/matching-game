@@ -1,6 +1,9 @@
 #root {
   display: flex;
-  margin: 20vh auto;
+  align-items: center;
+  justify-content: center;
+  height: 100vh !important;
+  width: 100vw !important;
 }
 .img-tile {
   height: 5em !important;
@@ -10,4 +13,6 @@
   background-color: transparent !important;
   border: none !important;
 }
-
+span {
+  font-size: 1.5em;
+}

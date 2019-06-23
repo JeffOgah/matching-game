@@ -6,9 +6,9 @@ import idea from "./images/idea.png";
 import like from "./images/like.png";
 import music from "./images/music.png";
 import pin from "./images/pin.png";
-import location from "./images/location.png";
+import radio from "./images/radio.png";
 import star from "./images/star.png";
-import tick from "./images/tick.png";
+import disc from "./images/disc.png";
 
 class App extends React.Component {
   constructor(props) {
@@ -18,6 +18,8 @@ class App extends React.Component {
       check: [],
       found: [],
       display: Array(16).fill("invisible"),
+      timer: 0,
+      moves: 0,
     };
     this.handleClick = this.handleClick.bind(this);
     this.checkMatch = this.checkMatch.bind(this);
@@ -37,6 +39,7 @@ class App extends React.Component {
       check: [],
       display: temp,
       found: arr,
+      moves: (this.state.moves + 1)
     });
   }
 
@@ -74,8 +77,12 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div className="app m-auto">
-        <button className="btn btn-primary" onClick={this.newGame}>New Game</button>
+      <div className="app m-auto bg-light p-3">
+        <h1 className="text-center mb-5">Matching Game</h1>
+        <div className="d-flex justify-content-around my-3">
+          <span>Moves: {this.state.moves}</span>
+          <span>{this.state.timer}</span>
+          <button className="btn btn-primary" onClick={this.newGame}>New Game</button></div>
         <GameBoard
           board={this.state.board}
           onclick={this.handleClick}
@@ -89,7 +96,7 @@ class App extends React.Component {
 export default App;
 
 const createGame = () => {
-  const x = [camera, idea, like, music, pin, location, star, tick];
+  const x = [camera, idea, like, music, pin, radio, star, disc];
   const arr = [...x, ...x];
   for (let i = arr.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
