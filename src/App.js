@@ -75,7 +75,7 @@ class App extends React.Component {
       moves: this.state.moves + 1,
       rating: rate
     });
-    if (this.state.found.length === 2) {
+    if (this.state.found.length === this.state.board.length) {
       this.handleWin();
     }
   }

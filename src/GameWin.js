@@ -20,14 +20,15 @@ class GameWin extends React.Component {
 
   render() {
     let rate = [];
-    const x = "good "
+    const temp = "good "
       .repeat(this.props.rating)
       .concat("bad ".repeat(3 - this.props.rating));
-    let stars = x.split(" ");
-    let y;
+    let stars = temp.split(" ");
+    let check;
     for (let i = 0; i < 3; i++) {
-      y = String(stars[i])==="good"? good : bad;
-      rate.push(<img className="icon" src={y} alt={stars[i]} key={i}/>);
+      check = String(stars[i])==="good"? good : bad;
+      rate.push(<img className="icon" src={check} alt={stars[i]} key={i}/>);
+     }
       return (
         <div>
           <Modal
@@ -62,6 +63,5 @@ class GameWin extends React.Component {
         </div>
       );
     }
-  }
 }
 export default GameWin;
